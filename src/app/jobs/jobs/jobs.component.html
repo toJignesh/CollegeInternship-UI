@@ -1,0 +1,10 @@
+<mat-form-field>
+  <mat-select #jobSelect placeholder="position" (selectionChange)="onSelectChange($event)">
+    <mat-option *ngFor="let job of jobs" [value]="job">
+      {{job.title}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button mat-raised-button style='margin-left: 25px;'
+  (click)="onSearch(jobSelect.selected)">Search</button>
