@@ -1,13 +1,19 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Candidate } from '../models/candidate.model';
+import { Filters } from '../models/filters.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CandidatesService {
+  testSubject:Subject<Candidate[]> = new Subject<Candidate[]>();
+
+  citiesSubject:Subject<Array<string>>=new Subject<Array<string>>();
+
+  filtersSubject: Subject<Filters> = new Subject<Filters>();
 
   constructor(private http: HttpClient) { }
 
@@ -16,10 +22,11 @@ export class CandidatesService {
       .pipe(map(data => {
         return data.map(d =>
           <Candidate>Object.assign({
-            id: d.productId,
+            id: d.id,
             firstName: d.firstName,
             lastName: d.lastName,
             skills: d.candidateSkills.map(s => s.skillId),
+            city: d.city,
             postalCode: d.postalCode,
             rankBySkills: d.candidateSkills.length
           })
@@ -27,4 +34,6 @@ export class CandidatesService {
       })
       );
   }
+
+  
 }

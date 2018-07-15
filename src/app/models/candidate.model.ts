@@ -4,6 +4,7 @@ export interface Candidate{
     lastName:string;
     middleName:string;
     description:string;
+    city: string;
     postalCode:string;
     rankBySkills:number;
     skills: Array<number>;

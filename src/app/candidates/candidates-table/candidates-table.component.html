@@ -1,0 +1,35 @@
+<div *ngIf='candidates?.length>0' class="example-container mat-elevation-z8">
+                      
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.firstName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> city </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.city}}</mat-cell>
+      </ng-container>
+
+    <ng-container matColumnDef="rankBySkills">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> rank </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rankBySkills}}</mat-cell>
+    </ng-container>
+
+                       
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+     >
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[2, 5, 10, 25]"></mat-paginator>
+</div>

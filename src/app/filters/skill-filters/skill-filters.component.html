@@ -1,0 +1,19 @@
+<div *ngIf="showForm">
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+        <b>Skills</b>
+        <div formArrayName="skills">
+            <div *ngFor="let skill of myForm.get('skills').controls; let i=index;">
+                <input type='checkbox' [formControlName]="i" />{{jobSkills[i].name}}
+            </div>
+        </div>
+        <hr>
+        <b>Cities</b>
+        <div formArrayName="cities">
+            <div *ngFor="let city of myForm.get('cities').controls; let c=index;">
+                <input type='checkbox' [formControlName]="c" />{{uniqueCities[c]}}
+            </div>
+        </div>
+        <hr>
+        <button type="submit">Update</button>
+    </form>
+</div>

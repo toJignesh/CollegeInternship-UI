@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Job } from '../models/job.model';
+import { map } from 'rxjs/operators';
+import { Skill } from '../models/skill.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +19,18 @@ export class JobsService {
 
   selectedJobChanged(job: Job):void{
     this.selectedJob.next(job);
+  }
+
+  getJobSkills(job: Job):Observable<Skill[]>{
+    return this.http.get<any>(`/api/jobs/${job.id}/skills`)
+    .pipe(
+      map(ss=>{
+        return ss.map(s=>
+          <Skill>Object.assign({
+          id: s.id,
+          name: s.name
+        }))
+      })
+    )
   }
 }

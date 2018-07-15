@@ -7,17 +7,25 @@ import { JobsComponent } from './jobs/jobs/jobs.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CandidatesByJobSkillsComponent } from './candidates/candidates-by-job-skills/candidates-by-job-skills.component';
+import { CandidatesTableComponent } from './candidates/candidates-table/candidates-table.component';
+import { SkillFiltersComponent } from './filters/skill-filters/skill-filters.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     JobsComponent,
-    CandidatesByJobSkillsComponent
+    CandidatesByJobSkillsComponent,
+    CandidatesTableComponent,
+    SkillFiltersComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MaterialModule,
     HttpClientModule
   ],
