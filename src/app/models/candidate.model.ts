@@ -8,4 +8,5 @@ export interface Candidate{
     postalCode:string;
     rankBySkills:number;
     skills: Array<number>;
+    distance:number;
 }

@@ -11,7 +11,8 @@ import { Filters } from '../models/filters.model';
 export class CandidatesService {
   testSubject:Subject<Candidate[]> = new Subject<Candidate[]>();
 
-  citiesSubject:Subject<Array<string>>=new Subject<Array<string>>();
+  citiesSubjectBySkills:Subject<Array<string>>=new Subject<Array<string>>();
+  citiesSubjectByDesc:Subject<Array<string>>=new Subject<Array<string>>();
 
   filtersSubject: Subject<Filters> = new Subject<Filters>();
 
@@ -28,7 +29,8 @@ export class CandidatesService {
             skills: d.candidateSkills.map(s => s.skillId),
             city: d.city,
             postalCode: d.postalCode,
-            rankBySkills: d.candidateSkills.length
+            rankBySkills: d.candidateSkills.length,
+            distance: d.distanceFromJob
           })
         )
       })

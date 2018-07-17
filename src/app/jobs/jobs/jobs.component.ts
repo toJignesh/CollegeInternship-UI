@@ -28,14 +28,12 @@ export class JobsComponent implements OnInit,OnDestroy {
     .subscribe(
       (data)=>{ 
         this.jobs = data as Job[];
-        console.log('is this converted?',this.jobs);
       }
 
     );
   }
 
   onSearch(selected: MatOption){
-    console.log(selected);
     this._jobsService.selectedJobChanged(selected.value);
   }
 

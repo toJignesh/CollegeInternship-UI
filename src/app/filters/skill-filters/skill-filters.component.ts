@@ -1,6 +1,6 @@
 import { Filters } from './../../models/filters.model';
 import { CandidatesService } from './../../_services/candidates.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, merge, mergeMap, map } from 'rxjs/operators';
 import { JobsService } from './../../_services/jobs.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Skill } from '../../models/skill.model';
@@ -23,7 +23,19 @@ export class SkillFiltersComponent implements OnInit, OnDestroy {
 
   constructor(private _jobsService:JobsService,
               private _candidatesService:CandidatesService) { 
-    this.subCities = this._candidatesService.citiesSubject
+    this.subCities = this._candidatesService.citiesSubjectBySkills
+                    .pipe(
+                      mergeMap(
+                        citiesBySkills=>
+                            this._candidatesService.citiesSubjectByDesc
+                                .pipe(
+                                  map(citiesByDesc=>
+                                      citiesByDesc.concat(citiesBySkills)
+                                                  .filter((v, i, a) => {return a.indexOf(v) === i})
+                                  )
+                                )
+                      )
+                    )
                     .subscribe(data=>{
                       this.uniqueCities=data
                       this.buildCitiesGroup();

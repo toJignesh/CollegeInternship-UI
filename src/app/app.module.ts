@@ -10,6 +10,7 @@ import { CandidatesByJobSkillsComponent } from './candidates/candidates-by-job-s
 import { CandidatesTableComponent } from './candidates/candidates-table/candidates-table.component';
 import { SkillFiltersComponent } from './filters/skill-filters/skill-filters.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CandidatesByJobDescComponent } from './candidates/candidates-by-job-desc/candidates-by-job-desc.component';
 
 
 
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     JobsComponent,
     CandidatesByJobSkillsComponent,
     CandidatesTableComponent,
-    SkillFiltersComponent
+    SkillFiltersComponent,
+    CandidatesByJobDescComponent
   ],
   imports: [
     BrowserModule,

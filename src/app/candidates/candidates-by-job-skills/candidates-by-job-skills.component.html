@@ -1,1 +1,3 @@
-<app-candidates-table></app-candidates-table>
+<div *ngIf="candidatesByJobSkills.length>0" >
+    <app-candidates-table [candidates]="candidatesByJobSkills"></app-candidates-table>
+</div>

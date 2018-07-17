@@ -24,7 +24,11 @@
       <mat-cell *matCellDef="let row"> {{row.rankBySkills}}</mat-cell>
     </ng-container>
 
-                       
+    <ng-container matColumnDef="distance">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> distance </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.distance | number:'1.2-2'}}</mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
      >

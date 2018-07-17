@@ -3,14 +3,14 @@
         <b>Skills</b>
         <div formArrayName="skills">
             <div *ngFor="let skill of myForm.get('skills').controls; let i=index;">
-                <input type='checkbox' [formControlName]="i" />{{jobSkills[i].name}}
+                <input type='checkbox' [formControlName]="i" /><span style="margin-left: 7px;">{{jobSkills[i].name}}</span>
             </div>
         </div>
         <hr>
         <b>Cities</b>
         <div formArrayName="cities">
             <div *ngFor="let city of myForm.get('cities').controls; let c=index;">
-                <input type='checkbox' [formControlName]="c" />{{uniqueCities[c]}}
+                <input type='checkbox' [formControlName]="c" /><span style="margin-left: 7px;">{{uniqueCities[c]}}</span>
             </div>
         </div>
         <hr>
