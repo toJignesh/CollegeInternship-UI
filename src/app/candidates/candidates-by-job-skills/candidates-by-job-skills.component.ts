@@ -13,30 +13,30 @@ import { switchMap } from 'rxjs/operators';
 })
 export class CandidatesByJobSkillsComponent implements OnInit, OnDestroy {
 
-  candidatesByJobSkills:Array<Candidate>=[]; // initialize to empty array
-  cities:Array<string>;
-  subCandidates:Subscription;
+  // candidatesByJobSkills:Array<Candidate>=[]; // initialize to empty array
+  // cities:Array<string>;
+  // subCandidates:Subscription;
   
-  constructor(private _jobsService: JobsService,
-    private _candidatesService: CandidatesService) { }
+  // constructor(private _jobsService: JobsService,
+  //   private _candidatesService: CandidatesService) { }
 
   /**
    *
    */
   ngOnInit(){
-    this.subCandidates = this._jobsService.selectedJob
-      .pipe(
-        switchMap(job=>this._candidatesService.getAll(job.id))
-      )
-      .subscribe((cnds)=>{
-        this.candidatesByJobSkills = cnds;
+    // this.subCandidates = this._jobsService.selectedJob
+    //   .pipe(
+    //     switchMap(job=>this._candidatesService.getAll(job.id))
+    //   )
+    //   .subscribe((cnds)=>{
+    //     this.candidatesByJobSkills = cnds;
 
-        const x = this.candidatesByJobSkills.map(c=>c.city);
-        this.cities = x.filter((v, i, a) => {return a.indexOf(v) === i}); 
-        this.cities.push('city by skills');
-        this._candidatesService.citiesSubjectBySkills.next(this.cities);        
-      }
-    );
+    //     const x = this.candidatesByJobSkills.map(c=>c.city);
+    //     this.cities = x.filter((v, i, a) => {return a.indexOf(v) === i}); 
+    //     this.cities.push('city by skills');
+    //     this._candidatesService.citiesSubjectBySkills.next(this.cities);        
+    //   }
+    // );
   }
 
   ngOnDestroy(){

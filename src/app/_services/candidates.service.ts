@@ -37,5 +37,23 @@ export class CandidatesService {
       );
   }
 
+  getAllByJobDescription(jobId: number): Observable<Candidate[]> {
+    return this.http.get<Array<any>>(`/api/candidates/for-job-desc?jobid=${jobId}`)
+      .pipe(map(data => {
+        return data.map(d =>
+          <Candidate>Object.assign({
+            id: d.id,
+            firstName: d.firstName,
+            lastName: d.lastName,
+            skills: d.candidateSkills.map(s => s.skillId),
+            city: d.city,
+            postalCode: d.postalCode,
+            rankBySkills: d.candidateSkills.length,
+            distance: d.distanceFromJob
+          })
+        )
+      })
+      );
+  }
   
 }
