@@ -111,8 +111,8 @@ export class SkillFiltersComponent implements OnInit, OnDestroy {
     let selectedCities = this.uniqueCities.filter((c, i) => this.myForm.value.cities[i])
                                           .map(c => c.toLowerCase());
 
-    let selectedSkills = this.jobSkills.filter((s, i) => this.myForm.value.skills[i])
-                                       .map(s => s.id);
+    let selectedSkills = this.jobSkills.filter((s, i) => this.myForm.value.skills[i]);
+                                       //.map(s => s.id);
 
     let selectedDistance = this.myForm.value.distance.distanceRadio;
     if(selectedDistance == null){

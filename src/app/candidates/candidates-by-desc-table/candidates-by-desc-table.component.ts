@@ -14,7 +14,7 @@ import { Filters } from '../../models/filters.model';
 })
 export class CandidatesByDescTableComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<Candidate>;
-  displayedColumns:Array<string> = ['id','firstName','city','rankBySkills', 'distance'];
+  displayedColumns:Array<string> = ['id','firstName','city','rankBySkills', 'distance', 'description'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
@@ -49,19 +49,25 @@ export class CandidatesByDescTableComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
 
         this.dataSource.filterPredicate = (data: Candidate, filters: string) =>{
+
           let predicates = <Filters>JSON.parse(filters);
-          if(predicates.cities.length == 0 && predicates.skills.length == 0 && predicates.distanceIndex == -1)
+          if(predicates.cities.length == 0 && predicates.skills.length == 0 && predicates.distanceIndex.toString() == "")
           {
             return true;
           }
+          let skillIds: Array<number> = predicates.skills.map(s=>s.id);
 
           let okByCity: boolean = (predicates.cities.length > 0)?(predicates['cities'].indexOf(data.city.toLowerCase())!== -1)?true:false
                                                                 :true;
-          let okBySkill: boolean = (predicates.skills.length>0)?(data.skills.some(s=>predicates.skills.includes(s)))?true:false
+          let okBySkill: boolean = (predicates.skills.length>0)?(data.skills.some(s=>skillIds.includes(s)))?true:false
                                                                :true;
+          if(!okBySkill){
+            let skillNames: Array<string>=predicates.skills.map(s=>s.name);
+            okBySkill = skillNames.some(s=> data.description.toLowerCase().indexOf(s.toLowerCase()) > -1);
+          }                                                                
 
           let okByDistance: boolean = false;
-          if(predicates.distanceIndex == -1){
+          if(predicates.distanceIndex.toString() == ""){
             okByDistance = true;
           }
           else{

@@ -51,18 +51,19 @@ export class CandidatesBySkillsTableComponent implements OnInit, OnDestroy {
 
         this.dataSource.filterPredicate = (data: Candidate, filters: string) =>{
           let predicates = <Filters>JSON.parse(filters);
-          if(predicates.cities.length == 0 && predicates.skills.length == 0 && predicates.distanceIndex == -1)
+          if(predicates.cities.length == 0 && predicates.skills.length == 0 && predicates.distanceIndex.toString() == "")
           {
             return true;
           }
+          let skillIds: Array<number> = predicates.skills.map(s=>s.id);
 
           let okByCity: boolean = (predicates.cities.length > 0)?(predicates['cities'].indexOf(data.city.toLowerCase())!== -1)?true:false
                                                                 :true;
-          let okBySkill: boolean = (predicates.skills.length>0)?(data.skills.some(s=>predicates.skills.includes(s)))?true:false
+          let okBySkill: boolean = (predicates.skills.length>0)?(data.skills.some(s=>skillIds.includes(s)))?true:false
                                                                :true;
 
           let okByDistance: boolean = false;
-          if(predicates.distanceIndex == -1){
+          if(predicates.distanceIndex.toString() == ""){
             okByDistance = true;
           }
           else{

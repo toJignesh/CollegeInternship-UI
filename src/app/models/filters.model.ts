@@ -1,7 +1,7 @@
 import { Skill } from "./skill.model";
 
 export interface Filters{
-    skills:Array<number>;
+    skills:Array<Skill>;
     cities:Array<string>;
     distanceIndex:number;
 }

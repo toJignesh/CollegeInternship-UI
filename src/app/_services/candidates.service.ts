@@ -30,7 +30,8 @@ export class CandidatesService {
             city: d.city,
             postalCode: d.postalCode,
             rankBySkills: d.candidateSkills.length,
-            distance: d.distanceFromJob
+            distance: d.distanceFromJob,
+            description: d.description
           })
         )
       })
@@ -49,7 +50,8 @@ export class CandidatesService {
             city: d.city,
             postalCode: d.postalCode,
             rankBySkills: d.candidateSkills.length,
-            distance: d.distanceFromJob
+            distance: d.distanceFromJob,
+            description: d.description
           })
         )
       })
