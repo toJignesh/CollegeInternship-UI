@@ -1,0 +1,22 @@
+<div>
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Postal Code</th>
+        <th scope="col">Extra</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let job of jobs'>
+        <th scope="row">{{job.id}}</th>
+        <td>{{job.title}}</td>
+        <td>{{job.description}}</td>
+        <td>{{job.postalCode}}</td>
+        <td><a (click)="deleteJob(job)">delete</a>></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

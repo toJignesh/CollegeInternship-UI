@@ -1,7 +1,7 @@
+import { Job } from './../models/job.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Job } from '../models/job.model';
 import { map } from 'rxjs/operators';
 import { Skill } from '../models/skill.model';
 
@@ -32,5 +32,9 @@ export class JobsService {
         }))
       })
     )
+  }
+
+  delete(job: Job): Observable<any>{
+    return this.http.delete('/api/jobs/' + job.id);
   }
 }
